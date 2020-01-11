@@ -24,15 +24,15 @@ const scrape = () => {
   if (page_num_city % 5 != 0) {
     url = "http://publicemailrecords.com/city/" + cities_arr[cities_num] + "/Illinois?page=" + page_num_city;
     page_num_city++;
-    request(url, (err, response, html) => {
+    request(url, { 'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36" }, (err, response, html) => {
       if (err) {
         console.log("err : ", err);
         res.json({ error: "error "});
       }
 
       let $ = cheerio.load(html);
-      console.log("html : ", html);
-
+      // console.log("html : ", html);
+      console.log("Response : ", response);
       let city = cities_arr[cities_num];
 
       // get all emails on page in an array
